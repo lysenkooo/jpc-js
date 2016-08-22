@@ -115,7 +115,7 @@ JPC.prototype._initSocket = function() {
 
     if (data.hasOwnProperty('error')) {
       if (data.error.code && data.error.message) {
-        self.emit('error', data.error.message);
+        self.emit('error', data.error.message, data.error.code);
       } else {
         self.emit('error', 'Wrong error format');
       }
