@@ -1,0 +1,23 @@
+{
+  "name": "jpc",
+  "version": "1.0.0",
+  "description": "JPC is JSON-RPC 2.0 client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lysenkooo/jpc-js.git"
+  },
+  "keywords": [
+    "json",
+    "rpc"
+  ],
+  "author": "Denis Lysenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lysenkooo/jpc-js/issues"
+  },
+  "homepage": "https://github.com/lysenkooo/jpc-js#readme"
+}
