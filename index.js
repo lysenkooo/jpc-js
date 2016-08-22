@@ -9,6 +9,7 @@ function JPC(connectionString) {
   this.connectionString = connectionString;
   this.messageNum = 0;
   this.reconnectInterval = null;
+  this.token = null;
 
   this.on('error', function(message) {
     console.error(message);
@@ -173,6 +174,10 @@ JPC.prototype._makeMessage = function(method, params, id) {
 
   if (params !== null) {
     message.params = params;
+  }
+
+  if (this.token) {
+    message.token = this.token;
   }
 
   return JSON.stringify(message);
