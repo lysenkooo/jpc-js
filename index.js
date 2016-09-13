@@ -11,10 +11,6 @@ function JPC(connectionString) {
   this.reconnectInterval = null;
   this.token = null;
 
-  this.on('error', function(message) {
-    console.error(message);
-  });
-
   this.open();
 }
 
@@ -81,8 +77,8 @@ JPC.prototype._initSocket = function() {
   var self = this;
   var ws = new WebSocket(this.connectionString);
 
-  ws.onopen = function() {
-    self.emit('open');
+  ws.onopen = function(event) {
+    self.emit('open', event);
 
     if (self.reconnectInterval) {
       clearTimeout(self.reconnectInterval);
@@ -90,13 +86,13 @@ JPC.prototype._initSocket = function() {
     }
   };
 
-  ws.onclose = function() {
+  ws.onclose = function(event) {
     if (self.shouldReconnect === false) {
-      self.emit('close');
+      self.emit('close', event);
       return;
     }
 
-    self.emit('lost');
+    self.emit('lost', event);
 
     if (self.reconnectInterval === null) {
       self.reconnectInterval = setInterval(function() {
