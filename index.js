@@ -147,15 +147,11 @@ JPC.prototype._initSocket = function() {
 JPC.prototype._send = function(message) {
   var self = this;
 
-  while (this.ws.readyState !== 1) {
-    setTimeout(function () {
-      self._send(message);
-    }, 1000);
-
-    return;
+  if (this.ws.readyState === 1) {
+    this.ws.send(message);
+  } else {
+    this.emit('error', 'Socket is not ready');
   }
-
-  this.ws.send(message);
 };
 
 JPC.prototype._makeMessage = function(method, params, id) {
