@@ -1,6 +1,6 @@
 {
   "name": "jpc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JPC is JSON-RPC 2.0 client",
   "main": "index.js",
   "scripts": {
