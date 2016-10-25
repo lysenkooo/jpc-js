@@ -28,6 +28,11 @@ JPC.prototype.close = function() {
 }
 
 JPC.prototype.call = function(method, params, callback) {
+  if (!callback && typeof params === 'function') {
+    callback = params
+    params = null
+  }
+
   var eventId = this._makeEventId();
   var message;
 
@@ -75,6 +80,9 @@ JPC.prototype.unsubscribe = function(channel) {
 
 JPC.prototype._initSocket = function() {
   var self = this;
+
+  this.emit('init');
+
   var ws = new WebSocket(this.connectionString);
 
   ws.onopen = function(event) {
@@ -145,8 +153,6 @@ JPC.prototype._initSocket = function() {
 };
 
 JPC.prototype._send = function(message) {
-  var self = this;
-
   if (this.ws.readyState === 1) {
     this.ws.send(message);
   } else {
